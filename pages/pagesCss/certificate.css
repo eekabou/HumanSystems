@@ -119,52 +119,55 @@ body{
 }
 
 .top-container .info-box{
-    max-width: 50%;
+    padding: 16px;
+    border: 1px solid #000;
+    background: linear-gradient(170deg, rgba(52, 93, 129, 0.08) 1.85%, rgba(57, 46, 75, 0.08) 98%);
+    border-radius: 2rem;
     animation: toRight 0.8s;
 }
 
-.top-container .header{
+/* .top-container .header{
     margin: 0;
     color: #fff;
     font-size: 2.4rem;
     font-weight: 600;
     line-height: 55px;
-}
+} */
 
-.top-container .info-text{
+/* .top-container .info-text{
     margin: 20px 0 32px;
     color: #fff;
     font-size: 16px;
     line-height: 20px;
     letter-spacing: 0.5px;
-}
+} */
 
-.top-container .info-buttons{
+/* .top-container .info-buttons{
     display: flex;
-}
+} */
 
-.top-container .info-btn{
+/* .top-container .info-btn{
     cursor: pointer;
     padding: 15px 45px;
     border-radius: 16px;
     font-weight: 500;
     font-size: 17px;
-    /* letter-spacing: -1px; */
+    letter-spacing: -1px;
     color: #ffffff;
-}
+} */
 
-.top-container .info-btn.nav-btn{
+/* .top-container .info-btn.nav-btn{
     margin-left: 20px;
     background-color: transparent;
     border: 1px solid #fff;
-}
+} */
 
-.top-container .info-btn.selected{
+/* .top-container .info-btn.selected{
     border: none;
     background: linear-gradient(95deg, #7e22ce 3.2%, #3b82f6 99.5%);
-}
+} */
 
-.top-container .certification-box{
+.top-container .cert-box{
     padding: 16px;
     border: 1px solid #000;
     background: linear-gradient(170deg, rgba(52, 93, 129, 0.08) 1.85%, rgba(57, 46, 75, 0.08) 98%);
@@ -172,21 +175,21 @@ body{
     animation: toLeft 0.8s;
 }
 
-.top-container .nft-pic{
+.top-container .cert-pic{
     object-fit: cover;
     width: 500px;
     height: 700px;
     border-radius: 1.6rem;
 }
 
-.top-container .certification-box .nft-content{
+.top-container .cert-box .cert-content{
     display: flex;
     align-items: center;
     justify-content: space-around;
     margin-top: 10px;
 }
 
-.top-container .certification-box .info, .top-container .certification-box .likes{
+.top-container .cert-box .info, .top-container .cert-box .likes{
     display: flex;
     align-items: center;
     color: #fff;
@@ -194,7 +197,7 @@ body{
     font-size: 12px;
 }
 
-.top-container .certification-box .info-img{
+.top-container .cert-box .info-img{
     object-fit: cover;
     flex-shrink: 0;
     width: 30px;
@@ -203,13 +206,13 @@ body{
     margin-right: 10px;
 }
 
-.top-container .certification-box .likes .icon-box{
+.top-container .cert-box .likes .icon-box{
     display: flex;
     align-items: center;
     font-size: 15px;
 }
 
-.top-container .certification-box .likes .icon-box .bx{
+.top-container .cert-box .likes .icon-box .bx{
     font-size: 30px;
     margin-right: 8px;
 }
@@ -345,7 +348,7 @@ body{
         margin: 60px 0;
     }
 
-    .top-container .certification-box{
+    .top-container .cert-box{
         display: none;
     }
     
@@ -407,7 +410,7 @@ body{
         margin-bottom: 4rem;
     }
 
-    .top-container .certification-box{
+    .top-container .cert-box{
         display: block;
         max-width: none;
         max-height: none;
