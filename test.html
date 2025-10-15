@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>자연스러운 회전</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            background-color: #1a1a1a;
+            color: #fff;
+            text-align: center;
+            padding-top: 50px;
+            margin: 0;
+            overflow: hidden;
+        }
+
+        h1 {
+            color: #eee;
+        }
+
+        .scene {
+            width: 700px;
+            height: 700px;
+            cursor: grab;
+            position: absolute;
+            left: 50%;
+            bottom: 0;
+            transform: translate(-50%, 50%);
+        }
+        
+        .scene:active {
+            cursor: grabbing;
+        }
+
+        .image-container {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            transform-origin: 50% 50%;
+            /* ▼▼▼ 변경 사항: JS 애니메이션을 사용하므로 CSS transition 제거 ▼▼▼ */
+        }
+        
+        .image-item {
+            position: absolute;
+            width: 150px;
+            height: 120px;
+            border: 2px solid #0af;
+            box-shadow: 0 0 10px rgba(0, 170, 255, 0.7);
+            overflow: hidden;
+            background-color: #222;
+            background-size: contain;
+            background-position: center;
+            background-repeat: no-repeat;
+            user-select: none;
+            -webkit-user-drag: none;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>자연스러운 회전</h1>
+    <p>드래그하다가 놓으면 관성이 적용됩니다.</p>
+
+    <div class="scene">
+        <div class="image-container">
+            <div class="image-item"></div>
+            <div class="image-item"></div>
+            <div class="image-item"></div>
+            <div class="image-item"></div>
+            <div class="image-item"></div>
+            <div class="image-item"></div>
+            <div class="image-item"></div>
+            <div class="image-item"></div>
+            <div class="image-item"></div>
+            <div class="image-item"></div>
+            <div class="image-item"></div>
+            <div class="image-item"></div>
+            <div class="image-item"></div>
+            <div class="image-item"></div>
+            <div class="image-item"></div>
+            <div class="image-item"></div>
+        </div>
+    </div>
+
+    <script>
+        const scene = document.querySelector('.scene');
+        const imageContainer = document.querySelector('.image-container');
+        const imageItems = document.querySelectorAll('.image-item');
+        const itemCount = imageItems.length;
+        
+        const imageUrls = [
+            "https://picsum.photos/id/101/150/120", "https://picsum.photos/id/102/150/120",
+            "https://picsum.photos/id/103/150/120", "https://picsum.photos/id/104/150/120",
+            "https://picsum.photos/id/105/150/120", "https://picsum.photos/id/106/150/120",
+            "https://picsum.photos/id/107/150/120", "https://picsum.photos/id/108/150/120",
+            "https://picsum.photos/id/109/150/120", "https://picsum.photos/id/110/150/120",
+            "https://picsum.photos/id/111/150/120", "https://picsum.photos/id/112/150/120",
+            "https://picsum.photos/id/113/150/120", "https://picsum.photos/id/114/150/120",
+            "https://picsum.photos/id/115/150/120", "https://picsum.photos/id/116/150/120"
+        ];
+        
+        const radius = 250;
+        const angleStep = (2 * Math.PI) / itemCount;
+
+        imageItems.forEach((item, i) => {
+            item.style.backgroundImage = `url('${imageUrls[i]}')`;
+            const currentAngle = angleStep * i;
+            const x = Math.cos(currentAngle) * radius;
+            const y = Math.sin(currentAngle) * radius;
+            const angleDeg = currentAngle * (180 / Math.PI);
+            const rotationDeg = angleDeg - 90;
+            
+            item.style.transform = `translate(-50%, -50%) translate(${x}px, ${y}px) rotate(${rotationDeg}deg)`;
+            item.style.left = '50%';
+            item.style.top = '50%';
+            item.style.zIndex = itemCount - i;
+        });
+        
+        scene.addEventListener('contextmenu', (e) => e.preventDefault());
+
+        // --- ▼▼▼ 자연스러운 회전을 위한 로직으로 변경 ▼▼▼ ---
+        
+        let isDragging = false;
+        let startX = 0;
+        let rotation = 0;       // 현재 컨테이너의 회전 각도
+        let startRotation = 0;  // 드래그 시작 시의 회전 각도
+        let lastX = 0;          // 속도 계산을 위한 이전 마우스 X 좌표
+        let velocity = 0;       // 회전 속도
+        let animationFrameId;   // 애니메이션 프레임 ID
+        const friction = 0.95;  // 마찰 계수 (값이 1에 가까울수록 천천히 멈춤)
+
+        // 관성 애니메이션을 처리하는 함수
+        function inertiaLoop() {
+            rotation += velocity; // 속도만큼 회전 각도 증가
+            velocity *= friction; // 마찰력 적용하여 속도 감소
+            
+            imageContainer.style.transform = `rotate(${rotation}deg)`;
+            
+            // 속도가 매우 낮아지면 애니메이션 중지
+            if (Math.abs(velocity) > 0.1) {
+                animationFrameId = requestAnimationFrame(inertiaLoop);
+            }
+        }
+
+        scene.addEventListener('mousedown', (e) => {
+            isDragging = true;
+            // 진행 중인 관성 애니메이션이 있다면 중지
+            cancelAnimationFrame(animationFrameId);
+            
+            startX = e.clientX;
+            startRotation = rotation;
+            lastX = startX;
+            velocity = 0;
+        });
+
+        window.addEventListener('mousemove', (e) => {
+            if (!isDragging) return;
+            
+            const dx = e.clientX - startX;
+            const sensitivity = 0.3; // 감도 조절
+            rotation = startRotation + dx * sensitivity;
+            
+            // 현재 프레임의 속도를 계산 (이전 프레임과의 차이)
+            // 0.8, 0.2는 값을 부드럽게 만들기 위한 가중치입니다.
+            velocity = 0.8 * ((e.clientX - lastX) * sensitivity) + 0.2 * velocity;
+            lastX = e.clientX;
+            
+            imageContainer.style.transform = `rotate(${rotation}deg)`;
+        });
+
+        window.addEventListener('mouseup', () => {
+            if (!isDragging) return;
+            isDragging = false;
+            
+            // 마우스를 놓는 순간 관성 애니메이션 시작
+            inertiaLoop();
+        });
+
+    </script>
+
+</body>
+</html>
