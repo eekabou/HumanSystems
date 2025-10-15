@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>이미지 설명 추가</title>
+    <title>document</title>
     <style>
         body {
             font-family: sans-serif;
@@ -26,7 +26,7 @@
             position: absolute;
             left: 50%;
             bottom: 0;
-            transform: translate(-50%, 100%); /* 두번째 값을 변경하면 원의 중심이 움직임, 클수록 내려감*/
+            transform: translate(-50%, 80%); 
         }
         
         .scene:active {
@@ -44,10 +44,11 @@
         
         .image-item {
             position: absolute;
-            width: 150px;
-            height: 120px;
-            border: 2px solid #0af;
-            box-shadow: 0 0 10px rgba(0, 170, 255, 0.7);
+            /* ▼▼▼ 변경 사항: 이미지 크기 100% 증가 ▼▼▼ */
+            width: 175px;  /* 150px -> 300px */
+            height: 240px; /* 120px -> 240px */
+            border: 2px solid lightgreen;
+            box-shadow: 0 0 10px lightseagreen;
             overflow: hidden;
             background-color: #222;
             background-size: contain;
@@ -56,15 +57,9 @@
             user-select: none;
             -webkit-user-drag: none;
             cursor: pointer;
-            transition: transform 0.2s, box-shadow 0.2s;
+            transition: box-shadow 0.2s;
         }
 
-        .image-item:hover {
-            transform: scale(1.1);
-            box-shadow: 0 0 20px rgba(0, 170, 255, 1);
-        }
-
-        /* ▼▼▼ 추가 사항 1. 설명 텍스트 스타일 ▼▼▼ */
         .description {
             position: absolute;
             top: 0;
@@ -75,16 +70,9 @@
             color: white;
             font-size: 13px;
             text-align: center;
-            
-            /* 평소에는 숨김 */
-            opacity: 0;
-            transition: opacity 0.3s ease-in-out;
+            pointer-events: none;
         }
 
-        /* 마우스를 올렸을 때 설명 텍스트 표시 */
-        .image-item:hover .description {
-            opacity: 1;
-        }
 
         #lightbox {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
@@ -103,12 +91,12 @@
 </head>
 <body>
 
-    <h1>클릭 & 드래그로 회전</h1>
-    <p>이미지에 마우스를 올리면 설명이 나타납니다.</p>
+    <!-- <h1>클릭 & 드래그로 회전</h1>
+    <p>이미지 클릭 시 해당 이미지만 강조 표시</p> -->
 
     <div class="scene">
         <div class="image-container">
-            </div>
+        </div>
     </div>
     
     <div id="lightbox" class="hidden">
@@ -122,42 +110,40 @@
         const lightboxImage = document.getElementById('lightbox-image');
         
         const imageUrls = [
-            "https://picsum.photos/id/101/800/600", "https://picsum.photos/id/102/800/600",
-            "https://picsum.photos/id/103/800/600", "https://picsum.photos/id/104/800/600",
-            "https://picsum.photos/id/105/800/600", "https://picsum.photos/id/106/800/600",
-            "https://picsum.photos/id/107/800/600", "https://picsum.photos/id/108/800/600",
-            "https://picsum.photos/id/109/800/600", "https://picsum.photos/id/110/800/600",
-            "https://picsum.photos/id/111/800/600", "https://picsum.photos/id/112/800/600",
-            "https://picsum.photos/id/113/800/600", "https://picsum.photos/id/114/800/600",
-            "https://picsum.photos/id/115/800/600", "https://picsum.photos/id/116/800/600"
+            "images/중소기업_확인서.png", "images/중소기업_확인서.png",
+            "images/중소기업_확인서.png", "images/중소기업_확인서.png",
+            "images/중소기업_확인서.png", "images/중소기업_확인서.png",
+            "images/중소기업_확인서.png", "images/중소기업_확인서.png",
+            "images/중소기업_확인서.png", "images/중소기업_확인서.png",
+            "images/중소기업_확인서.png", "images/중소기업_확인서.png",
+            "images/중소기업_확인서.png", "images/중소기업_확인서.png",
+            "images/중소기업_확인서.png", "images/중소기업_확인서.png",
+            "images/중소기업_확인서.png", "images/중소기업_확인서.png",
         ];
         
-        // ▼▼▼ 추가 사항 3. 설명 텍스트 배열 ▼▼▼
         const descriptions = [
-            "첫 번째 풍경", "두 번째 건축물", "세 번째 도시", "네 번째 자연",
-            "다섯 번째 동물", "여섯 번째 사물", "일곱 번째 길", "여덟 번째 하늘",
-            "아홉 번째 바다", "열 번째 숲", "열한 번째 다리", "열두 번째 산",
-            "열세 번째 강", "열네 번째 꽃", "열다섯 번째 나무", "열여섯 번째 호수"
+            "중소기업 확인서", "중소기업 확인서", "중소기업 확인서", "중소기업 확인서",
+            "중소기업 확인서", "중소기업 확인서", "중소기업 확인서", "중소기업 확인서",
+            "중소기업 확인서", "중소기업 확인서", "중소기업 확인서", "중소기업 확인서",
+            "중소기업 확인서", "중소기업 확인서", "중소기업 확인서", "중소기업 확인서",
+            "중소기업 확인서", "중소기업 확인서"
         ];
 
         const itemCount = imageUrls.length;
-        const radius = 900; // 원의 지름
+        const radius = 500;
         const angleStep = (2 * Math.PI) / itemCount;
 
-        // ▼▼▼ 변경 사항 4. 이미지 아이템과 설명을 동적으로 생성 및 배치 ▼▼▼
         for (let i = 0; i < itemCount; i++) {
-            // 1. 요소 생성
             const item = document.createElement('div');
             item.className = 'image-item';
-
+            
             const description = document.createElement('span');
             description.className = 'description';
-            description.textContent = descriptions[i]; // 설명 텍스트 설정
+            description.textContent = descriptions[i];
+            item.appendChild(description);
 
-            item.appendChild(description); // 이미지 아이템에 설명 span 추가
-            imageContainer.appendChild(item); // 컨테이너에 이미지 아이템 추가
+            imageContainer.appendChild(item);
 
-            // 2. 스타일 및 위치 설정
             const thumbnailUrl = imageUrls[i].replace("/800/600", "/150/120");
             item.style.backgroundImage = `url('${thumbnailUrl}')`;
             
@@ -166,12 +152,13 @@
             const y = Math.sin(currentAngle) * radius;
             const angleDeg = currentAngle * (180 / Math.PI);
             const rotationDeg = angleDeg + 90;
+            
             item.style.transform = `translate(-50%, -50%) translate(${x}px, ${y}px) rotate(${rotationDeg}deg)`;
+            
             item.style.left = '50%';
             item.style.top = '50%';
             item.style.zIndex = itemCount - i;
 
-            // 3. 이벤트 리스너 추가
             item.addEventListener('click', () => {
                 lightboxImage.src = imageUrls[i];
                 lightbox.classList.remove('hidden');
@@ -187,30 +174,42 @@
             if (e.target !== lightboxImage) { lightbox.classList.add('hidden'); }
         });
         
+        window.addEventListener('keydown', (e) => {
+            if (!lightbox.classList.contains('hidden') && e.key === 'Escape') {
+                lightbox.classList.add('hidden');
+            }
+        });
+        
         scene.addEventListener('contextmenu', (e) => e.preventDefault());
 
-        // --- 자연스러운 회전 로직 (기존과 동일) ---
         let isDragging = false, startX = 0, rotation = 0, startRotation = 0, lastX = 0, velocity = 0, animationFrameId;
         const friction = 0.95;
+        
         function inertiaLoop() {
             rotation += velocity; velocity *= friction;
             imageContainer.style.transform = `rotate(${rotation}deg)`;
             if (Math.abs(velocity) > 0.1) { animationFrameId = requestAnimationFrame(inertiaLoop); }
         }
+
         scene.addEventListener('mousedown', (e) => {
             isDragging = true; cancelAnimationFrame(animationFrameId);
             startX = e.clientX; startRotation = rotation; lastX = startX; velocity = 0;
         });
+
         window.addEventListener('mousemove', (e) => {
             if (!isDragging) return;
-            const dx = e.clientX - startX; const sensitivity = 0.1; // 회전 시 민감도
+            const dx = e.clientX - startX; 
+            const sensitivity = 0.2;
             rotation = startRotation + dx * sensitivity;
             velocity = 0.8 * ((e.clientX - lastX) * sensitivity) + 0.2 * velocity;
-            lastX = e.clientX; imageContainer.style.transform = `rotate(${rotation}deg)`;
+            lastX = e.clientX; 
+            imageContainer.style.transform = `rotate(${rotation}deg)`;
         });
+
         window.addEventListener('mouseup', () => {
             if (!isDragging) return; isDragging = false; inertiaLoop();
         });
+
     </script>
 
 </body>
