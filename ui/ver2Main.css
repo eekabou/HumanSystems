@@ -1,0 +1,648 @@
+/* --- 전역 스타일 --- */
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Noto Sans KR', sans-serif;
+            margin: 0;
+            background-color: #f9f9f9;
+            color: #333;
+            padding-top: 80px; 
+        }
+
+        .container {
+            max-width: 960px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* --- 상단 고정 헤더 --- */
+        .main-header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: #ffffff;
+            border-bottom: 2px solid transparent; 
+            border-image: linear-gradient(to right, #007bff, #8a2be2, #ff1493) 1;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+            z-index: 1000;
+            padding: 15px 0;
+        }
+
+        .header-container {
+            max-width: 960px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo a {
+            text-decoration: none;
+            color: #007bff;
+            font-size: 24px;
+            font-weight: 700;
+        }
+
+        .logo span {
+            font-size: 14px;
+            color: #555;
+            font-weight: 400;
+            margin-left: 8px;
+        }
+
+        .main-nav ul {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+            display: flex;
+            gap: 30px;
+        }
+
+        .main-nav li a {
+            text-decoration: none;
+            color: #333;
+            font-size: 16px;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+
+        .main-nav li a:hover {
+            color: #007bff;
+        }
+        
+        /* --- 히어로 섹션 --- */
+        .hero-section {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #ffffff;
+            padding: 40px;
+            border-radius: 12px;
+            margin-top: 20px;
+            margin-bottom: 40px;
+        }
+
+        .hero-text {
+            flex-basis: 50%;
+            padding-right: 20px;
+        }
+
+        .hero-text p {
+            font-size: 28px;
+            font-weight: 300;
+            color: #333;
+            margin: 0;
+            line-height: 1.3;
+        }
+
+        .hero-text h1 {
+            font-size: 36px;
+            font-weight: 700;
+            color: #007bff;
+            margin: 5px 0 0 0;
+            line-height: 1.3;
+        }
+
+        .hero-image {
+            flex-basis: 50%;
+            text-align: right;
+        }
+
+        .hero-image img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 12px;
+            display: inline-block;
+        }
+
+
+        /* --- CEO 프로필 섹션 --- */
+        .ceo-profile {
+            background-color: #ffffff;
+            border-radius: 12px;
+            text-align: center;
+            padding: 40px 20px;
+            margin-bottom: 40px;
+        }
+
+        .ceo-profile h2 {
+            font-size: 28px;
+            font-weight: 700;
+            color: #222;
+            margin-top: 0;
+        }
+
+        .ceo-profile .subtitle {
+            font-size: 16px;
+            color: #777;
+            margin-top: -10px;
+            margin-bottom: 30px;
+        }
+
+        .ceo-profile img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            border: 5px solid #f0f0f0;
+            margin-bottom: 20px;
+        }
+
+        .ceo-profile .quote-box {
+            background-color: #eef7ff; 
+            border: 1px solid #bce0ff;
+            border-radius: 10px;
+            padding: 25px;
+            max-width: 600px;
+            margin: 0 auto 30px auto;
+            font-size: 16px;
+            line-height: 1.6;
+        }
+
+        .ceo-profile .quote-box p:first-child {
+            font-size: 18px;
+            font-weight: 600;
+            color: #0056b3;
+            margin-top: 0;
+        }
+
+        .ceo-profile .tabs {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .ceo-profile .tab-button {
+            border: 1px solid #ccc;
+            background-color: #f7f7f7;
+            color: #555;
+            padding: 10px 30px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 15px;
+            font-weight: 500;
+        }
+
+        .ceo-profile .tab-button.active {
+            background-color: #ffffff;
+            border-color: #007bff;
+            color: #007bff;
+            font-weight: 700;
+            box-shadow: 0 2px 4px rgba(0, 123, 255, 0.1);
+        }
+
+        /* --- CEO 경력 사항 섹션 --- */
+        .ceo-career {
+            background-color: #ffffff;
+            border-radius: 12px;
+            padding: 40px;
+        }
+
+        .ceo-career h3 {
+            text-align: center;
+            font-size: 24px;
+            font-weight: 700;
+            margin-top: 0;
+            margin-bottom: 10px;
+        }
+
+        .ceo-career .subtitle {
+            text-align: center;
+            font-size: 16px;
+            color: #555;
+            margin-top: 0;
+            margin-bottom: 50px;
+        }
+
+        .ceo-career .subtitle strong {
+            color: #000;
+            font-size: 18px;
+        }
+
+        /* --- 타임라인 --- */
+        .timeline {
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto;
+            border-left: 3px solid #007bff;
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 30px;
+            padding-left: 60px;
+        }
+        
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -9px;
+            top: 12px;
+            width: 15px;
+            height: 15px;
+            background-color: #fff;
+            border: 3px solid #007bff;
+            border-radius: 50%;
+            z-index: 2;
+        }
+
+        .timeline-icon {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 40px;
+            height: 40px;
+            background-color: #007bff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 20px;
+            font-weight: bold;
+            z-index: 1;
+            transform: translateY(2px);
+        }
+        
+        .timeline-item.orange .timeline-icon { background-color: #fd7e14; }
+        .timeline-item.green .timeline-icon { background-color: #28a745; }
+
+        .timeline-content {
+            background-color: #fdfdfd;
+            border: 1px solid #eee;
+            border-radius: 8px;
+            padding: 20px;
+            position: relative;
+        }
+
+        .timeline-content .date {
+            display: block;
+            font-size: 14px;
+            font-weight: 600;
+            color: #007bff;
+            margin-bottom: 8px;
+        }
+        
+        .timeline-item.orange .date { color: #fd7e14; }
+        .timeline-item.green .date { color: #28a745; }
+
+
+        .timeline-content .tag {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background-color: #fff3cd;
+            border: 1px solid #ffeeba;
+            color: #856404;
+            padding: 4px 10px;
+            border-radius: 5px;
+            font-size: 12px;
+            font-weight: 700;
+        }
+        
+        .timeline-item.green .tag {
+             background-color: #d4edda;
+             border-color: #c3e6cb;
+             color: #155724;
+        }
+
+        .timeline-content h4 {
+            font-size: 18px;
+            font-weight: 600;
+            margin: 0 0 10px 0;
+        }
+
+        .timeline-content p {
+            font-size: 15px;
+            color: #555;
+            line-height: 1.6;
+            margin: 0;
+        }
+
+        .timeline-summary {
+            position: relative;
+            padding-left: 60px;
+            margin-top: 30px;
+        }
+
+        .timeline-summary .timeline-content {
+            background-color: #e6f7ff;
+            border-color: #b3e0ff;
+        }
+
+        .timeline-summary p {
+            font-size: 14px;
+            color: #004a99;
+        }
+
+        .timeline-summary p strong {
+            color: #007bff;
+        }
+
+        /* --- 인증 현황 섹션 --- */
+        .certification-section {
+            background-color: #ffffff;
+            border-radius: 12px;
+            padding: 40px;
+            margin-top: 40px;
+        }
+
+        .certification-section .part-indicator {
+            background-color: #435fe8;
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            display: inline-block;
+            font-size: 14px;
+            font-weight: 500;
+            margin: 0 auto 20px auto;
+            display: block;
+            width: fit-content;
+        }
+        
+        .certification-section h2 {
+            text-align: center;
+            font-size: 28px;
+            font-weight: 700;
+            color: #222;
+            margin-top: 0;
+            margin-bottom: 10px;
+        }
+
+        .certification-section .subtitle {
+            text-align: center;
+            font-size: 16px;
+            color: #777;
+            margin-top: 0;
+            margin-bottom: 30px;
+        }
+        
+        .summary-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+        
+        .summary-box {
+            border-radius: 10px;
+            padding: 20px;
+            color: #fff;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+            transition: transform 0.2s ease-in-out;
+        }
+        
+        .summary-box:hover {
+            transform: translateY(-5px); 
+        }
+
+        .summary-box.blue { background: linear-gradient(to right, #007bff, #0056b3); }
+        .summary-box.green { background: linear-gradient(to right, #198754, #106c3c); }
+        .summary-box.purple { background: linear-gradient(to right, #cb2ed0, #9a1a9e); }
+        .summary-box.orange { background: linear-gradient(to right, #fd7e14, #d35400); }
+
+        .summary-box .icon {
+            font-size: 24px;
+            margin-bottom: 10px;
+            display: block;
+        }
+        
+        .summary-box .count {
+            font-size: 36px;
+            font-weight: 700;
+            display: block;
+        }
+        
+        .summary-box .title {
+            font-size: 14px;
+            display: block;
+            margin-top: 5px;
+        }
+        
+        .cert-category-box {
+            margin-bottom: 30px;
+            border: 1px solid #eee;
+            border: 2px solid #0d6efd;
+            border-radius: 20px;
+            background-color: #fdfdfd;
+            box-shadow: 0 0 7px blue; 
+        }
+        
+        .cert-category-box.category-academia {
+            border-color: #6f42c1;
+            box-shadow: 0 0 7px #6f42c1;
+        }
+        .cert-category-box.category-service {
+            border-color: #fd7e14; 
+            box-shadow: 0 0 7px #fd7e14;
+        }
+
+        .category-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 20px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .category-header .title-group {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .category-header .icon {
+            font-size: 18px;
+            color: #fff;
+            border-radius: 50%;
+            width: 32px;
+            height: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
+        
+        .category-header .icon.blue { background: linear-gradient(to bottom right, #007bff, #0056b3); }
+        .category-header .icon.purple { background: linear-gradient(to bottom right, #6f42c1, #512b96); }
+        .category-header .icon.orange { background: linear-gradient(to bottom right, #fd7e14, #d35400); }
+        
+        .category-header h3 {
+            margin: 0;
+            font-size: 18px;
+            font-weight: 600;
+        }
+        
+        .category-header .toggle-btn {
+            background: #f0f0f0;
+            border: 1px solid #ddd;
+            border-radius: 20px;
+            padding: 5px 12px;
+            font-size: 14px;
+            cursor: pointer;
+            color: #555;
+            transition: background 0.2s, border-color 0.2s;
+        }
+        
+        .category-header .toggle-btn:hover {
+            background: #e0e0e0;
+            border-color: #bbb;
+        }
+
+        .cert-list {
+            list-style: none;
+            margin: 0;
+            padding: 20px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px 20px;
+        }
+        
+        .cert-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: #fff;
+            border: 1px solid #eee;
+            border-left: 4px solid #0d6efd; /* 기본 파란색 테두리 */
+            padding: 12px 15px;
+            padding-left: 12px;
+            border-radius: 8px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.03);
+            transition: transform 0.1s ease-in-out, box-shadow 0.1s ease-in-out;
+            cursor: pointer;
+        }
+        
+        .cert-item:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+        }
+
+        .cert-category-box.category-academia .cert-item {
+            border-left-color: #6f42c1; /* 보라색 */
+        }
+        
+        .cert-category-box.category-service .cert-item {
+            border-left-color: #fd7e14; /* 주황색 */
+        }
+
+
+        .cert-number {
+            font-size: 13px;
+            color: #fff;
+            background-color: #0d6efd;
+            border-radius: 50%;
+            width: 24px;
+            height: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            flex-shrink: 0;
+        }
+        
+        .cert-item .cert-number.purple { background-color: #6f42c1; }
+        .cert-item .cert-number.orange { background-color: #fd7e14; }
+
+        .cert-tag {
+            font-size: 12px;
+            padding: 3px 8px;
+            border-radius: 5px;
+            font-weight: 500;
+            flex-shrink: 0;
+        }
+        
+        .cert-tag.type-cert { background-color: #e6f2ff; color: #0056b3; }
+        .cert-tag.type-check { background-color: #fef4e6; color: #b36e00; }
+        .cert-tag.type-direct { background-color: #d4edda; color: #155724; }
+        
+        .cert-title {
+            font-size: 15px;
+            color: #333;
+            flex-grow: 1;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        
+        .cert-status {
+            font-size: 14px;
+            font-weight: 600;
+            flex-shrink: 0;
+        }
+        
+        .cert-status.status-complete { color: #198754; }
+        .cert-status.status-pending { color: #0d6efd; }
+
+        .final-summary {
+            text-align: center;
+            margin-top: 30px;
+            padding: 15px;
+            background: linear-gradient(to right, #f8f9fa, #e9ecef); 
+            border: 1px solid #e9ecef;
+            border-radius: 8px;
+            font-size: 15px;
+            color: #555;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+        }
+        
+        .final-summary strong {
+            color: #007bff;
+        }
+
+
+        /* --- 모달 스타일 --- */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.85);
+            justify-content: center;
+            align-items: center;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .modal-overlay.show {
+            display: flex;
+        }
+
+        .modal-content {
+            margin: auto;
+            display: block;
+            max-width: 90%;
+            max-height: 90vh;
+            object-fit: contain;
+            animation: zoomIn 0.3s ease;
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 20px;
+            right: 35px;
+            color: #f1f1f1;
+            font-size: 40px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: color 0.2s;
+        }
+
+        .modal-close:hover,
+        .modal-close:focus {
+            color: #bbb;
+            text-decoration: none;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes zoomIn {
+            from { transform: scale(0.8); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
