@@ -64,17 +64,17 @@ header .container {
 header nav ul {
     display: flex;
     
-    /* [수정] 6개 기준 720px -> 3개 기준 약 360px (조정 가능) */
-    max-width: 360px; 
+    /* [수정] 360px -> 400px로 변경 */
+    max-width: 400px; 
     flex-grow: 1; 
     justify-content: flex-end; 
 }
 
 header nav li {
     flex: 1; 
-    text-align: left; 
+    text-align: center;
     padding: 10px 20px; 
-    min-width: 100px; 
+    /* min-width: 100px; */
 }
 
 header nav a {
@@ -86,6 +86,7 @@ header nav a {
     position: relative;
     padding: 10px 0;
     padding-bottom: 10px; 
+    white-space: nowrap; /* [추가] 줄바꿈 방지 */
 }
 
 header nav a::after {
@@ -136,17 +137,17 @@ header:hover .dropdown-mega-wrapper {
     display: flex; 
     padding: 30px 0;
     
-    /* [수정] 6개 기준 720px -> 3개 기준 약 360px (nav ul과 동일하게) */
-    max-width: 360px; 
+    /* [수정] 360px -> 400px로 변경 (nav ul과 동일하게) */
+    max-width: 400px; 
     margin-left: auto; 
-    margin-right: 0;
+    margin-right: 7px;
 }
 
 .dropdown-column {
     flex: 1; 
     text-align: center;
     padding: 0 10px; 
-    min-width: 100px;
+    /* min-width: 100px; */
 }
 
 .dropdown-column ul {
@@ -162,9 +163,10 @@ header:hover .dropdown-mega-wrapper {
     font-size: 15px;
     font-weight: 500;
     color: #333;
-    padding: 5px 0; /* [수정] 좌우 패딩 제거, 어차피 부모에 있음 */
+    padding: 5px 0; 
     display: block;
     transition: color 0.2s;
+    white-space: nowrap; /* [추가] 줄바꿈 방지 */
 }
 
 .dropdown-column a:hover {
